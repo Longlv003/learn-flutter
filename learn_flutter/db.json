@@ -79,16 +79,6 @@
       "description": "Điện thoại giá rẻ, hiệu năng ổn",
       "category": "phone",
       "rating": 4.5
-    },
-    {
-      "name": "3123",
-      "price": 12312,
-      "quantity": 1231,
-      "image": "1231",
-      "description": "123123",
-      "category": "123123",
-      "rating": 0,
-      "id": "FsR-x79YIYg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

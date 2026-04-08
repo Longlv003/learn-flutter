@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learn_flutter/blocs/home/product_cubit.dart';
 import 'package:learn_flutter/blocs/home/product_state.dart';
+import 'package:learn_flutter/pages/home/widgets/confirm_dialog.dart';
 
 class ProductDialog extends StatefulWidget {
   const ProductDialog({super.key});
@@ -115,29 +116,17 @@ class _ProductDialog extends State<ProductDialog> {
               onPressed: state.status == ProductDialogStatus.loading
                   ? null
                   : () async {
-                      final confirm = await showDialog<bool>(
+                      final confirm = await showConfirmDialog(
                         context: context,
-                        builder: (_) => AlertDialog(
-                          title: const Text("Xác nhận"),
-                          content: Text(
-                            state.mode == ProductDialogMode.add
-                                ? "Bạn có chắc muốn thêm sản phẩm này?"
-                                : "Bạn có chắc muốn cập nhật sản phẩm này?",
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.pop(context, false),
-                              child: const Text("Hủy"),
-                            ),
-                            ElevatedButton(
-                              onPressed: () => Navigator.pop(context, true),
-                              child: const Text("Đồng ý"),
-                            ),
-                          ],
-                        ),
+                        title: state.mode == ProductDialogMode.add
+                            ? "Xác nhận thêm"
+                            : "Xác nhận cập nhật",
+                        content: state.mode == ProductDialogMode.add
+                            ? "Bạn có chắc muốn thêm sản phẩm này?"
+                            : "Bạn có chắc muốn cập nhật sản phẩm này?",
                       );
 
-                      if (confirm == true) {
+                      if (confirm) {
                         proCubit.submitProduct();
                       }
                     },

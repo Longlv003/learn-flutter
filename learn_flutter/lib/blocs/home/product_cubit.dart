@@ -102,5 +102,36 @@ class ProductCubit extends Cubit<ProductState> {
     }
   }
 
+  Future<void> deleteProduct(String id) async {
+    if (id.isEmpty) {
+      emit(
+        state.copyWith(
+          status: ProductDialogStatus.error,
+          errorMessage: 'Không có sản phẩm để xóa',
+        ),
+      );
+      return;
+    }
+
+    try {
+      emit(state.copyWith(status: ProductDialogStatus.loading));
+
+      final productApi = ProductApi(apiService);
+      await productApi.deleteProduct(id);
+
+      await Future.delayed(const Duration(seconds: 1));
+
+      emit(state.copyWith(status: ProductDialogStatus.success));
+    } catch (e) {
+      logger.e('Delete product failed: $e');
+      emit(
+        state.copyWith(
+          status: ProductDialogStatus.error,
+          errorMessage: 'Xóa sản phẩm thất bại: $e',
+        ),
+      );
+    }
+  }
+
   void reset() => emit(const ProductState());
 }

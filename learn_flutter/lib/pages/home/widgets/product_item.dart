@@ -4,8 +4,14 @@ import 'package:learn_flutter/model/product_model.dart';
 class ProductItem extends StatelessWidget {
   final ProductModel product;
   final VoidCallback? onTap;
+  final VoidCallback? onTapDelete;
 
-  const ProductItem({super.key, required this.product, this.onTap});
+  const ProductItem({
+    super.key,
+    required this.product,
+    this.onTap,
+    this.onTapDelete,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -97,9 +103,9 @@ class ProductItem extends StatelessWidget {
             // QUANTITY
             Padding(
               padding: const EdgeInsets.only(right: 12),
-              child: Text(
-                "x${product.quantity}",
-                style: const TextStyle(fontWeight: FontWeight.bold),
+              child: IconButton(
+                onPressed: onTapDelete,
+                icon: Icon(Icons.delete),
               ),
             ),
           ],

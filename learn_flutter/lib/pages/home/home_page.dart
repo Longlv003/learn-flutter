@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learn_flutter/blocs/home/home_cubit.dart';
 import 'package:learn_flutter/blocs/home/home_state.dart';
 import 'package:learn_flutter/blocs/home/product_cubit.dart';
+import 'package:learn_flutter/pages/home/widgets/confirm_dialog.dart';
 import 'package:learn_flutter/pages/home/widgets/product_dialog.dart';
 import 'package:learn_flutter/pages/home/widgets/product_item.dart';
 import 'package:learn_flutter/services/api_service.dart';
@@ -83,7 +84,31 @@ class _HomePageState extends State<HomePage> {
                               );
 
                               if (result == true) {
-                                context.read<HomeCubit>().refreshAll();
+                                homeCubit.refreshAll();
+                              }
+                            },
+                            onTapDelete: () async {
+                              final confirm = await showConfirmDialog(
+                                context: context,
+                                title: "Xóa sản phẩm",
+                                content:
+                                    "Bạn có chắc chắn muốn xóa sản phẩm này không?",
+                                confirmText: "Xóa",
+                                cancelText: "Hủy",
+                              );
+
+                              if (confirm) {
+                                final productCubit = ProductCubit(ApiService());
+                                await productCubit.deleteProduct(
+                                  product.id ?? "",
+                                );
+                                homeCubit.refreshAll();
+
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("Đã xóa sản phẩm"),
+                                  ),
+                                );
                               }
                             },
                           );
