@@ -33,10 +33,10 @@ class _HomePageState extends State<HomePage> {
             appBar: AppBar(title: const Text("Products")),
             floatingActionButton: FloatingActionButton(
               onPressed: () async {
-                final result = await showDialog<bool>(
+                final result = await showDialog(
                   context: context,
                   builder: (_) => BlocProvider(
-                    create: (_) => ProductCubit(ApiService()),
+                    create: (_) => ProductCubit(ApiService())..openAdd(),
                     child: const ProductDialog(),
                   ),
                 );
@@ -69,7 +69,24 @@ class _HomePageState extends State<HomePage> {
                         itemBuilder: (context, index) {
                           final product = state.products[index];
 
-                          return ProductItem(product: product, onTap: () {});
+                          return ProductItem(
+                            product: product,
+                            onTap: () async {
+                              final result = await showDialog(
+                                context: context,
+                                builder: (_) => BlocProvider(
+                                  create: (_) =>
+                                      ProductCubit(ApiService())
+                                        ..openEdit(product),
+                                  child: const ProductDialog(),
+                                ),
+                              );
+
+                              if (result == true) {
+                                context.read<HomeCubit>().refreshAll();
+                              }
+                            },
+                          );
                         },
                       ),
                     ),

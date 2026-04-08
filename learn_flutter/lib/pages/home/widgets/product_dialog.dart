@@ -31,7 +31,7 @@ class _ProductDialog extends State<ProductDialog> {
 
   void _bindState(ProductState state) {
     _nameController.text = state.name;
-    _priceController.text = state.price == 0 ? '' : state.price.toString();
+    _priceController.text = state.price;
     _quantityController.text = state.quantity == 0
         ? ''
         : state.quantity.toString();
@@ -60,7 +60,13 @@ class _ProductDialog extends State<ProductDialog> {
         final proCubit = context.read<ProductCubit>();
 
         return AlertDialog(
-          title: Text("Thêm sản phẩm"),
+          title: Text(
+            state.mode == ProductDialogMode.add
+                ? "Thêm sản phẩm"
+                : state.mode == ProductDialogMode.edit
+                ? "Update sản phẩm"
+                : "Xem chi tiết sản phẩm",
+          ),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -106,8 +112,44 @@ class _ProductDialog extends State<ProductDialog> {
               child: const Text("Cancel"),
             ),
             ElevatedButton(
-              onPressed: () => proCubit.submitProduct(),
-              child: const Text("Save"),
+              onPressed: state.status == ProductDialogStatus.loading
+                  ? null
+                  : () async {
+                      final confirm = await showDialog<bool>(
+                        context: context,
+                        builder: (_) => AlertDialog(
+                          title: const Text("Xác nhận"),
+                          content: Text(
+                            state.mode == ProductDialogMode.add
+                                ? "Bạn có chắc muốn thêm sản phẩm này?"
+                                : "Bạn có chắc muốn cập nhật sản phẩm này?",
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, false),
+                              child: const Text("Hủy"),
+                            ),
+                            ElevatedButton(
+                              onPressed: () => Navigator.pop(context, true),
+                              child: const Text("Đồng ý"),
+                            ),
+                          ],
+                        ),
+                      );
+
+                      if (confirm == true) {
+                        proCubit.submitProduct();
+                      }
+                    },
+              child: state.status == ProductDialogStatus.loading
+                  ? const SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : Text(
+                      state.mode == ProductDialogMode.add ? "Add" : "Update",
+                    ),
             ),
           ],
         );

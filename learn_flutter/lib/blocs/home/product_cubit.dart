@@ -21,6 +21,26 @@ class ProductCubit extends Cubit<ProductState> {
   void onCategoryChanged(String value) => emit(state.copyWith(category: value));
   void onRatingChanged(double value) => emit(state.copyWith(rating: value));
 
+  void openAdd() {
+    emit(const ProductState(mode: ProductDialogMode.add));
+  }
+
+  void openEdit(ProductModel product) {
+    emit(
+      state.copyWith(
+        mode: ProductDialogMode.edit,
+        id: product.id,
+        name: product.name,
+        price: product.price.toString(),
+        quantity: product.quantity,
+        image: product.image,
+        description: product.description,
+        category: product.category,
+        rating: product.rating,
+      ),
+    );
+  }
+
   bool _isValid() {
     final double parsedPrice =
         double.tryParse(state.price.replaceAll(',', '.')) ?? 0;
@@ -49,6 +69,7 @@ class ProductCubit extends Cubit<ProductState> {
       final productApi = ProductApi(apiService);
 
       final product = ProductModel(
+        id: state.id,
         name: state.name.trim(),
         price: parsedPrice,
         quantity: state.quantity,
@@ -58,7 +79,10 @@ class ProductCubit extends Cubit<ProductState> {
         rating: state.rating,
       );
 
-      final res = await productApi.createProduct(product);
+      // final res = await productApi.createProduct(product);
+      final res = state.mode == ProductDialogMode.add
+          ? await productApi.createProduct(product)
+          : await productApi.putProduct(product);
 
       if (res == null) {
         throw Exception("Create product failed");

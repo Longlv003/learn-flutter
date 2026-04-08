@@ -36,4 +36,35 @@ class ProductApi {
       return null;
     }
   }
+
+  Future<ProductModel?> putProduct(ProductModel product) async {
+    try {
+      if (product.id == null) {
+        throw Exception("Product ID is required for update");
+      }
+      final String path = '/products/${product.id}';
+      final res = await api.put(path, product.toJson());
+
+      final data = res.data;
+      logger.d("update product: $data");
+
+      return ProductModel.fromJson(data);
+    } catch (e) {
+      logger.e("Update product error: $e");
+      return null;
+    }
+  }
+
+  Future<bool> deleteProduct(String id) async {
+    try {
+      final String path = '/products/$id';
+      await api.delete(path);
+
+      logger.d("delete product success: $id");
+      return true;
+    } catch (e) {
+      logger.e("Delete product error: $e");
+      return false;
+    }
+  }
 }
