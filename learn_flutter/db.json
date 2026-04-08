@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "iPhone 15 Pro Max",
       "price": 32990000,
       "quantity": 15,
@@ -11,7 +11,7 @@
       "rating": 4.8
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Samsung Galaxy S24 Ultra",
       "price": 30990000,
       "quantity": 10,
@@ -21,7 +21,7 @@
       "rating": 4.7
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "MacBook Pro M3",
       "price": 45990000,
       "quantity": 8,
@@ -31,7 +31,7 @@
       "rating": 4.9
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Dell XPS 13",
       "price": 28990000,
       "quantity": 12,
@@ -41,7 +41,7 @@
       "rating": 4.6
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "AirPods Pro 2",
       "price": 5990000,
       "quantity": 25,
@@ -51,7 +51,7 @@
       "rating": 4.7
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Logitech MX Master 3S",
       "price": 2490000,
       "quantity": 20,
@@ -61,7 +61,7 @@
       "rating": 4.8
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "iPad Pro M2",
       "price": 24990000,
       "quantity": 14,
@@ -71,7 +71,7 @@
       "rating": 4.8
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Xiaomi Redmi Note 13",
       "price": 5990000,
       "quantity": 30,
@@ -79,6 +79,17 @@
       "description": "Điện thoại giá rẻ, hiệu năng ổn",
       "category": "phone",
       "rating": 4.5
+    },
+    {
+      "name": "3123",
+      "price": 12312,
+      "quantity": 1231,
+      "image": "1231",
+      "description": "123123",
+      "category": "123123",
+      "rating": 0,
+      "id": "FsR-x79YIYg"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

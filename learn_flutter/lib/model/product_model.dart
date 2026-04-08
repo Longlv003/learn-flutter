@@ -1,5 +1,5 @@
 class ProductModel {
-  final String id;
+  final String? id;
   final String name;
   final double price;
   final int quantity;
@@ -9,7 +9,7 @@ class ProductModel {
   final double rating;
 
   ProductModel({
-    required this.id,
+    this.id,
     required this.name,
     required this.price,
     required this.quantity,
@@ -34,7 +34,7 @@ class ProductModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      if (id != null) 'id': id,
       'name': name,
       'price': price,
       'quantity': quantity,
