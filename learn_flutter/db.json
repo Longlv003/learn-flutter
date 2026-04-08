@@ -1,0 +1,84 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "iPhone 15 Pro Max",
+      "price": 32990000,
+      "quantity": 15,
+      "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf",
+      "description": "Flagship cao cấp của Apple với chip A17 Pro",
+      "category": "phone",
+      "rating": 4.8
+    },
+    {
+      "id": 2,
+      "name": "Samsung Galaxy S24 Ultra",
+      "price": 30990000,
+      "quantity": 10,
+      "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf",
+      "description": "Điện thoại Android mạnh mẽ với bút S-Pen",
+      "category": "phone",
+      "rating": 4.7
+    },
+    {
+      "id": 3,
+      "name": "MacBook Pro M3",
+      "price": 45990000,
+      "quantity": 8,
+      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8",
+      "description": "Laptop hiệu năng cao dành cho developer",
+      "category": "laptop",
+      "rating": 4.9
+    },
+    {
+      "id": 4,
+      "name": "Dell XPS 13",
+      "price": 28990000,
+      "quantity": 12,
+      "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853",
+      "description": "Laptop mỏng nhẹ, thiết kế sang trọng",
+      "category": "laptop",
+      "rating": 4.6
+    },
+    {
+      "id": 5,
+      "name": "AirPods Pro 2",
+      "price": 5990000,
+      "quantity": 25,
+      "image": "https://images.unsplash.com/photo-1585386959984-a4155224a1ad",
+      "description": "Tai nghe chống ồn chủ động",
+      "category": "accessory",
+      "rating": 4.7
+    },
+    {
+      "id": 6,
+      "name": "Logitech MX Master 3S",
+      "price": 2490000,
+      "quantity": 20,
+      "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3",
+      "description": "Chuột không dây cao cấp cho dân văn phòng",
+      "category": "accessory",
+      "rating": 4.8
+    },
+    {
+      "id": 7,
+      "name": "iPad Pro M2",
+      "price": 24990000,
+      "quantity": 14,
+      "image": "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04",
+      "description": "Máy tính bảng mạnh mẽ cho sáng tạo",
+      "category": "tablet",
+      "rating": 4.8
+    },
+    {
+      "id": 8,
+      "name": "Xiaomi Redmi Note 13",
+      "price": 5990000,
+      "quantity": 30,
+      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97",
+      "description": "Điện thoại giá rẻ, hiệu năng ổn",
+      "category": "phone",
+      "rating": 4.5
+    }
+  ]
+}

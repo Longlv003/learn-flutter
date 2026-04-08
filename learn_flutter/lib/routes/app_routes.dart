@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_flutter/pages/home_page.dart';
-import 'package:learn_flutter/pages/login_page.dart';
-import 'package:learn_flutter/pages/splash_page.dart';
+import 'package:learn_flutter/pages/home/home_page.dart';
+import 'package:learn_flutter/pages/login/login_page.dart';
+import 'package:learn_flutter/pages/splash/splash_page.dart';
 import 'package:learn_flutter/routes/routes.dart';
 
 class AppRoutes {
