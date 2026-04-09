@@ -119,3 +119,4 @@ app.*.symbols
 !/dev/ci/**/Gemfile.lock
 
 /learn_flutter/node_modules
+/learn_flutter/.env

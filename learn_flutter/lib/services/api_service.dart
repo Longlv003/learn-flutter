@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:learn_flutter/configs/system.dart';
 
 class ApiService {
   late final Dio _dio;
@@ -6,10 +7,10 @@ class ApiService {
   ApiService() {
     _dio = Dio(
       BaseOptions(
-        baseUrl: "http://10.0.2.2:3000",
-        connectTimeout: const Duration(seconds: 10),
-        receiveTimeout: const Duration(seconds: 10),
-        headers: {"Content-Type": "application/json"},
+        baseUrl: URL.getBaseURL(),
+        connectTimeout: const Duration(milliseconds: System.connectionTimeout),
+        receiveTimeout: const Duration(milliseconds: System.receiveTimeout),
+        headers: System.header(),
       ),
     );
 

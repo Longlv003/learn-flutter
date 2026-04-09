@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learn_flutter/blocs/home/home_cubit.dart';
 import 'package:learn_flutter/blocs/home/home_state.dart';
 import 'package:learn_flutter/blocs/home/product_cubit.dart';
+import 'package:learn_flutter/flavors.dart';
 import 'package:learn_flutter/pages/home/widgets/confirm_dialog.dart';
 import 'package:learn_flutter/pages/home/widgets/product_dialog.dart';
 import 'package:learn_flutter/pages/home/widgets/product_item.dart';
@@ -31,9 +32,11 @@ class _HomePageState extends State<HomePage> {
       child: Builder(
         builder: (context) {
           return Scaffold(
-            appBar: AppBar(title: const Text("Products")),
+            // appBar: AppBar(title: const Text("Products")),
+            appBar: AppBar(title: Text("App ${Flavors.title}")),
             floatingActionButton: FloatingActionButton(
               onPressed: () async {
+                final homeCubit = context.read<HomeCubit>();
                 final result = await showDialog(
                   context: context,
                   builder: (_) => BlocProvider(
@@ -42,8 +45,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
 
-                if (result == true) {
-                  context.read<HomeCubit>().refreshAll();
+                if (result == true && context.mounted) {
+                  homeCubit.refreshAll();
                 }
               },
               child: const Icon(Icons.add),
@@ -104,6 +107,9 @@ class _HomePageState extends State<HomePage> {
                                 );
                                 homeCubit.refreshAll();
 
+                                if (!context.mounted) {
+                                  return;
+                                }
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                     content: Text("Đã xóa sản phẩm"),
