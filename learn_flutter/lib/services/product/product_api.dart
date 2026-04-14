@@ -5,9 +5,7 @@ import 'package:logger/logger.dart';
 var logger = Logger();
 
 class ProductApi {
-  final ApiService api;
-
-  ProductApi(this.api);
+  final api = ApiService();
 
   Future<List<ProductModel>> getProducts() async {
     try {

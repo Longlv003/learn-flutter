@@ -44,26 +44,4 @@ class ProductModel {
       'rating': rating,
     };
   }
-
-  ProductModel copyWith({
-    String? id,
-    String? name,
-    double? price,
-    int? quantity,
-    String? image,
-    String? description,
-    String? category,
-    double? rating,
-  }) {
-    return ProductModel(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      price: price ?? this.price,
-      quantity: quantity ?? this.quantity,
-      image: image ?? this.image,
-      description: description ?? this.description,
-      category: category ?? this.category,
-      rating: rating ?? this.rating,
-    );
-  }
 }

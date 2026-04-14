@@ -1,16 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learn_flutter/blocs/home/product_state.dart';
 import 'package:learn_flutter/model/product_model.dart';
-import 'package:learn_flutter/services/api_service.dart';
 import 'package:learn_flutter/services/product/product_api.dart';
 import 'package:logger/logger.dart';
 
 var logger = Logger();
 
 class ProductCubit extends Cubit<ProductState> {
-  final ApiService apiService;
-
-  ProductCubit(this.apiService) : super(ProductState());
+  ProductCubit() : super(ProductState());
 
   void onNameChanged(String value) => emit(state.copyWith(name: value));
   void onPriceChanged(String value) => emit(state.copyWith(price: value));
@@ -66,7 +63,7 @@ class ProductCubit extends Cubit<ProductState> {
     try {
       emit(state.copyWith(status: ProductDialogStatus.loading));
 
-      final productApi = ProductApi(apiService);
+      final productApi = ProductApi();
 
       final product = ProductModel(
         id: state.id,
@@ -116,7 +113,7 @@ class ProductCubit extends Cubit<ProductState> {
     try {
       emit(state.copyWith(status: ProductDialogStatus.loading));
 
-      final productApi = ProductApi(apiService);
+      final productApi = ProductApi();
       await productApi.deleteProduct(id);
 
       await Future.delayed(const Duration(seconds: 1));

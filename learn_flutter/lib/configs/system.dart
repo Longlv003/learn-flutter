@@ -26,15 +26,13 @@ class URL {
   }
 
   static String getBaseURL() {
-    switch (Flavors.appFlavor) {
-      case Flavor.dev:
+    switch (F.appFlavor) {
+      case Flavor.development:
         return _fallback(devUrl);
       case Flavor.staging:
         return _fallback(qaUrl);
-      case Flavor.prod:
+      case Flavor.production:
         return _fallback(proUrl);
-      default:
-        return "http://10.0.2.2:3000";
     }
   }
 }

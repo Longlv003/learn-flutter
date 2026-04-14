@@ -1,20 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learn_flutter/blocs/home/home_state.dart';
-import 'package:learn_flutter/services/api_service.dart';
 import 'package:learn_flutter/services/product/product_api.dart';
 import 'package:logger/logger.dart';
 
 var logger = Logger();
 
 class HomeCubit extends Cubit<HomeState> {
-  final ApiService apiService;
-
-  HomeCubit(this.apiService) : super(HomeState());
+  HomeCubit() : super(HomeState());
 
   Future<void> fetchProducts() async {
     try {
       emit(state.copyWith(status: Status.loading));
-      final productAPi = ProductApi(apiService);
+      final productAPi = ProductApi();
       final products = await productAPi.getProducts();
       await Future.delayed(Duration(seconds: 1));
       emit(state.copyWith(status: Status.success, products: products));

@@ -14,7 +14,7 @@
       "id": "2",
       "name": "Samsung Galaxy S24 Ultra",
       "price": 30990000,
-      "quantity": 12,
+      "quantity": 15,
       "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf",
       "description": "Điện thoại Android mạnh mẽ với bút S-Pen",
       "category": "phone",
@@ -81,13 +81,13 @@
       "rating": 4.5
     },
     {
-      "id": "4ZoV32LXU0Y",
-      "name": "123123",
-      "price": 13412,
-      "quantity": 123123,
-      "image": "123132",
-      "description": "1231",
-      "category": "1231",
+      "id": "tEiTm77uhQA",
+      "name": "ad",
+      "price": 123,
+      "quantity": 123,
+      "image": "123",
+      "description": "123",
+      "category": "123",
       "rating": 0
     }
   ],

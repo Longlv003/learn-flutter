@@ -2,9 +2,15 @@ import 'package:dio/dio.dart';
 import 'package:learn_flutter/configs/system.dart';
 
 class ApiService {
+  static final ApiService _instance = ApiService._internal();
+
   late final Dio _dio;
 
-  ApiService() {
+  factory ApiService() {
+    return _instance;
+  }
+
+  ApiService._internal() {
     _dio = Dio(
       BaseOptions(
         baseUrl: URL.getBaseURL(),

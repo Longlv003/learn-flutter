@@ -7,7 +7,6 @@ import 'package:learn_flutter/flavors.dart';
 import 'package:learn_flutter/pages/home/widgets/confirm_dialog.dart';
 import 'package:learn_flutter/pages/home/widgets/product_dialog.dart';
 import 'package:learn_flutter/pages/home/widgets/product_item.dart';
-import 'package:learn_flutter/services/api_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,19 +27,19 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => HomeCubit(ApiService())..refreshAll(),
+      create: (_) => HomeCubit()..refreshAll(),
       child: Builder(
         builder: (context) {
           return Scaffold(
             // appBar: AppBar(title: const Text("Products")),
-            appBar: AppBar(title: Text("App ${Flavors.title}")),
+            appBar: AppBar(title: Text("App ${F.title}")),
             floatingActionButton: FloatingActionButton(
               onPressed: () async {
                 final homeCubit = context.read<HomeCubit>();
                 final result = await showDialog(
                   context: context,
                   builder: (_) => BlocProvider(
-                    create: (_) => ProductCubit(ApiService())..openAdd(),
+                    create: (_) => ProductCubit()..openAdd(),
                     child: const ProductDialog(),
                   ),
                 );
@@ -80,8 +79,7 @@ class _HomePageState extends State<HomePage> {
                                 context: context,
                                 builder: (_) => BlocProvider(
                                   create: (_) =>
-                                      ProductCubit(ApiService())
-                                        ..openEdit(product),
+                                      ProductCubit()..openEdit(product),
                                   child: const ProductDialog(),
                                 ),
                               );
@@ -101,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                               );
 
                               if (confirm) {
-                                final productCubit = ProductCubit(ApiService());
+                                final productCubit = ProductCubit();
                                 await productCubit.deleteProduct(
                                   product.id ?? "",
                                 );
