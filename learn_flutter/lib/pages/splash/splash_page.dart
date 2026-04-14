@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:learn_flutter/blocs/splash/splash_cubit.dart';
 import 'package:learn_flutter/blocs/splash/splash_state.dart';
+import 'package:learn_flutter/cores/l10n/app_localizations.dart';
 import 'package:learn_flutter/routes/routes.dart';
 
 class SplashPage extends StatelessWidget {
@@ -28,7 +29,7 @@ class SplashPage extends StatelessWidget {
                         children: [
                           CircularProgressIndicator(),
                           SizedBox(height: 16),
-                          Text("Loading app ..."),
+                          Text(AppLocalizations.of(context)!.loadingApp),
                         ],
                       )
                     : state is SplashError
@@ -50,7 +51,7 @@ class SplashPage extends StatelessWidget {
                         children: [
                           CircularProgressIndicator(),
                           SizedBox(height: 16),
-                          Text("Welcome"),
+                          Text(AppLocalizations.of(context)!.welcomeMessage),
                         ],
                       ),
               ),

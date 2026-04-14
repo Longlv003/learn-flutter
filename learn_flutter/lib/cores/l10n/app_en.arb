@@ -1,0 +1,171 @@
+{
+  "@@locale": "en",
+  "loadingApp": "Loading app ...",
+  "@loadingApp": {
+    "description": ""
+  },
+  "welcomeMessage": "Welcome",
+  "@welcomeMessage": {
+    "description": "Welcome text shown on the main screen"
+  },
+  "loginAccount": "Login to your account",
+  "@loginAccount": {
+    "description": "Title for login screen"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Login button text"
+  },
+  "forgotPassword": "Forgot password",
+  "@forgotPassword": {
+    "description": "Forgot password link text"
+  },
+  "register": "Register",
+  "@register": {
+    "description": "Register button text"
+  },
+  "emailLabel": "Email",
+  "@emailLabel": {
+    "description": "Label for email input field"
+  },
+  "passwordLabel": "Password",
+  "@passwordLabel": {
+    "description": "Label for password input field"
+  },
+  "confirmPasswordLabel": "Confirm password",
+  "@confirmPasswordLabel": {
+    "description": "Label for confirm password input"
+  },
+  "enterEmailHint": "Enter email",
+  "@enterEmailHint": {
+    "description": "Hint text for email input"
+  },
+  "enterPasswordHint": "Enter password",
+  "@enterPasswordHint": {
+    "description": "Hint text for password input"
+  },
+  "enterConfirmPasswordHint": "Re-enter password",
+  "@enterConfirmPasswordHint": {
+    "description": "Hint text for confirm password input"
+  },
+  "dontHaveAccount": "Don't have an account?",
+  "@dontHaveAccount": {
+    "description": "Text prompting user to register"
+  },
+  "alreadyHaveAccount": "Already have an account?",
+  "@alreadyHaveAccount": {
+    "description": "Text prompting user to login"
+  },
+  "loginSuccess": "Login successful",
+  "@loginSuccess": {
+    "description": "Message shown when login succeeds"
+  },
+  "loginFailed": "Login failed",
+  "@loginFailed": {
+    "description": "Message shown when login fails"
+  },
+  "registerSuccess": "Register successful",
+  "@registerSuccess": {
+    "description": "Message shown when registration succeeds"
+  },
+  "registerFailed": "Register failed",
+  "@registerFailed": {
+    "description": "Message shown when registration fails"
+  },
+  "requiredField": "This field is required",
+  "@requiredField": {
+    "description": "Validation message for required fields"
+  },
+  "invalidEmail": "Invalid email",
+  "@invalidEmail": {
+    "description": "Validation message for invalid email format"
+  },
+  "passwordTooShort": "Password is too short",
+  "@passwordTooShort": {
+    "description": "Validation message when password is too short"
+  },
+  "cancelText": "Cancel",
+  "@cancelText": {
+    "description": "Cancel"
+  },
+  "confirmText": "Confirm",
+  "@confirmText": {
+    "description": "Confirm"
+  },
+  "deleteText": "Delete",
+  "@deleteText": {
+    "description": "Delete"
+  },
+  "deleteProductTitle": "Delete product",
+  "@deleteProductTitle": {
+    "description": "Title for delete product dialog"
+  },
+  "deleteProductConfirmMessage": "Are you sure you want to delete this product?",
+  "@deleteProductConfirmMessage": {
+    "description": "Confirmation message before deleting product"
+  },
+  "deletedProductSuccess": "Product deleted successfully",
+  "@deletedProductSuccess": {
+    "description": "Message shown after product is deleted"
+  },
+  "addProduct": "Add product",
+  "@addProduct": {
+    "description": "Add product button/text"
+  },
+  "editProduct": "Edit product",
+  "@editProduct": {
+    "description": "Edit product button/text"
+  },
+  "productDetail": "Product details",
+  "@productDetail": {
+    "description": "Screen title for product detail"
+  },
+  "confirmAdd": "Confirm add",
+  "@confirmAdd": {
+    "description": "Confirm add product action"
+  },
+  "confirmUpdate": "Confirm update",
+  "@confirmUpdate": {
+    "description": "Confirm update product action"
+  },
+  "confirmAddProductMessage": "Are you sure you want to add this product?",
+  "@confirmAddProductMessage": {
+    "description": "Message confirming adding product"
+  },
+  "confirmUpdateProductMessage": "Are you sure you want to update this product?",
+  "@confirmUpdateProductMessage": {
+    "description": "Message confirming updating product"
+  },
+  "add": "Add",
+  "@add": {
+    "description": "Add button"
+  },
+  "update": "Update",
+  "@update": {
+    "description": "Update button"
+  },
+  "name": "Name",
+  "@name": {
+    "description": "Product name label"
+  },
+  "price": "Price",
+  "@price": {
+    "description": "Product price label"
+  },
+  "quantity": "Quantity",
+  "@quantity": {
+    "description": "Product quantity label"
+  },
+  "imageUrl": "Image URL",
+  "@imageUrl": {
+    "description": "Product image URL field"
+  },
+  "description": "Description",
+  "@description": {
+    "description": "Product description field"
+  },
+  "category": "Category",
+  "@category": {
+    "description": "Product category field"
+  }
+}

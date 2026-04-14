@@ -11,12 +11,12 @@ class LoginCubit extends Cubit<LoginState> {
       await Future.delayed(const Duration(seconds: 1));
 
       if (email.trim().isEmpty || pass.trim().isEmpty) {
-        emit(LoginFailed("Email và pass không được để trống!"));
+        emit(LoginFailed("REQUIRED"));
         return;
       }
 
       if (!email.trim().endsWith("@gmail.com")) {
-        emit(LoginFailed("Email sai định dạng!"));
+        emit(LoginFailed("INVALID_EMAIL"));
         return;
       }
 
@@ -25,10 +25,10 @@ class LoginCubit extends Cubit<LoginState> {
       if (email.trim() == "admin@gmail.com" && pass.trim() == "admin123") {
         emit(LoginSuccess());
       } else {
-        emit(LoginFailed("Sai tài khoản hoặc mật khẩu!"));
+        emit(LoginFailed("WRONG_CREDENTIALS"));
       }
     } catch (e) {
-      emit(LoginFailed(e.toString()));
+      emit(LoginFailed("UNKNOWN_ERROR"));
     }
   }
 }

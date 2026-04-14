@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:learn_flutter/blocs/login/login_cubit.dart';
 import 'package:learn_flutter/blocs/login/login_state.dart';
+import 'package:learn_flutter/cores/l10n/app_localizations.dart';
 import 'package:learn_flutter/routes/routes.dart';
 
 class LoginPage extends StatefulWidget {
@@ -49,18 +50,35 @@ class _LoginPageState extends State<LoginPage> {
             builder: (context, state) {
               final loginCubit = context.read<LoginCubit>();
               final isLoading = state is LoginLoading;
-              final errorMessage = state is LoginFailed ? state.error : null;
+              // final errorMessage = state is LoginFailed ? state.error : null;
+              String? errorMessage;
+
+              if (state is LoginFailed) {
+                switch (state.error) {
+                  case "REQUIRED":
+                    errorMessage = AppLocalizations.of(context)!.requiredField;
+                    break;
+                  case "INVALID_EMAIL":
+                    errorMessage = AppLocalizations.of(context)!.invalidEmail;
+                    break;
+                  case "WRONG_CREDENTIALS":
+                    errorMessage = AppLocalizations.of(context)!.loginFailed;
+                    break;
+                  default:
+                    errorMessage = "Error";
+                }
+              }
 
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text(
-                    "Chào mừng bạn",
+                  Text(
+                    AppLocalizations.of(context)!.welcomeMessage,
                     style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
-                  const Text(
-                    "Đăng nhập tài khoản",
+                  Text(
+                    AppLocalizations.of(context)!.loginAccount,
                     style: TextStyle(fontSize: 16, color: Colors.black87),
                   ),
                   const SizedBox(height: 30),
@@ -70,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _emailController,
                     cursorColor: const Color(0xFF1B8E42),
                     decoration: InputDecoration(
-                      labelText: "Email",
+                      labelText: AppLocalizations.of(context)!.emailLabel,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -92,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                     obscureText: _obscureText,
                     cursorColor: const Color(0xFF1B8E42),
                     decoration: InputDecoration(
-                      labelText: "Password",
+                      labelText: AppLocalizations.of(context)!.passwordLabel,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -147,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                                 _passController.text,
                               );
                             },
-                      child: const Text("Login"),
+                      child: Text(AppLocalizations.of(context)!.login),
                     ),
                   ),
                 ],

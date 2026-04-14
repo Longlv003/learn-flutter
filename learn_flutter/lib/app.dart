@@ -1,6 +1,8 @@
 import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_flutter/configs/system.dart';
+import 'package:learn_flutter/cores/l10n/app_localizations.dart';
 import 'package:learn_flutter/routes/app_routes.dart';
 import 'package:learn_flutter/routes/routes.dart';
 
@@ -13,6 +15,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) => GetMaterialApp(
     title: F.title,
     debugShowCheckedModeBanner: false,
+    locale: System.defaultLocale,
+    supportedLocales: AppLocalizations.supportedLocales,
+    localizationsDelegates: AppLocalizations.localizationsDelegates,
     builder: (context, child) => Material(child: child),
     navigatorObservers: [ChuckerFlutter.navigatorObserver],
     getPages: AppRoutes().routes,

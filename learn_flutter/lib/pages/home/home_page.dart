@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learn_flutter/blocs/home/home_cubit.dart';
 import 'package:learn_flutter/blocs/home/home_state.dart';
 import 'package:learn_flutter/blocs/home/product_cubit.dart';
+import 'package:learn_flutter/cores/l10n/app_localizations.dart';
 import 'package:learn_flutter/flavors.dart';
 import 'package:learn_flutter/pages/home/widgets/confirm_dialog.dart';
 import 'package:learn_flutter/pages/home/widgets/product_dialog.dart';
@@ -52,6 +53,7 @@ class _HomePageState extends State<HomePage> {
             ),
             body: BlocBuilder<HomeCubit, HomeState>(
               builder: (context, state) {
+                final l10n = AppLocalizations.of(context)!;
                 final homeCubit = context.read<HomeCubit>();
 
                 if (state.status == Status.error) {
@@ -94,8 +96,8 @@ class _HomePageState extends State<HomePage> {
                                 title: "Xóa sản phẩm",
                                 content:
                                     "Bạn có chắc chắn muốn xóa sản phẩm này không?",
-                                confirmText: "Xóa",
-                                cancelText: "Hủy",
+                                confirmText: l10n.deleteText,
+                                cancelText: l10n.cancelText,
                               );
 
                               if (confirm) {

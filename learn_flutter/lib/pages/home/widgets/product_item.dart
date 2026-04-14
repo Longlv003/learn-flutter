@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/cores/format/formatter.dart';
 import 'package:learn_flutter/model/product_model.dart';
 
 class ProductItem extends StatelessWidget {
@@ -68,7 +69,10 @@ class ProductItem extends StatelessWidget {
 
                     // PRICE
                     Text(
-                      "${product.price.toInt()} đ",
+                      AppFormatter.formatMoney(
+                        context,
+                        product.price.toDouble(),
+                      ),
                       style: const TextStyle(
                         color: Colors.red,
                         fontWeight: FontWeight.w600,

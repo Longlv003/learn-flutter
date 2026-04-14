@@ -1,0 +1,171 @@
+{
+  "@@locale": "vi",
+  "loadingApp": "Đang tải ứng dụng ...",
+  "@loadingApp": {
+    "description": ""
+  },
+  "welcomeMessage": "Chào mừng",
+  "@welcomeMessage": {
+    "description": "Welcome text shown on the main screen"
+  },
+  "loginAccount": "Đăng nhập vào tài khoản của bạn",
+  "@loginAccount": {
+    "description": "Title for login screen"
+  },
+  "login": "Đăng nhập",
+  "@login": {
+    "description": "Login button text"
+  },
+  "forgotPassword": "Quên mật khẩu",
+  "@forgotPassword": {
+    "description": "Forgot password link text"
+  },
+  "register": "Đăng ký",
+  "@register": {
+    "description": "Register button text"
+  },
+  "emailLabel": "Email",
+  "@emailLabel": {
+    "description": "Label for email input field"
+  },
+  "passwordLabel": "Mật khẩu",
+  "@passwordLabel": {
+    "description": "Label for password input field"
+  },
+  "confirmPasswordLabel": "Xác nhận mật khẩu",
+  "@confirmPasswordLabel": {
+    "description": "Label for confirm password input"
+  },
+  "enterEmailHint": "Nhập email",
+  "@enterEmailHint": {
+    "description": "Hint text for email input"
+  },
+  "enterPasswordHint": "Nhập mật khẩu",
+  "@enterPasswordHint": {
+    "description": "Hint text for password input"
+  },
+  "enterConfirmPasswordHint": "Nhập lại mật khẩu",
+  "@enterConfirmPasswordHint": {
+    "description": "Hint text for confirm password input"
+  },
+  "dontHaveAccount": "Bạn chưa có tài khoản?",
+  "@dontHaveAccount": {
+    "description": "Text prompting user to register"
+  },
+  "alreadyHaveAccount": "Bạn đã có tài khoản?",
+  "@alreadyHaveAccount": {
+    "description": "Text prompting user to login"
+  },
+  "loginSuccess": "Đăng nhập thành công",
+  "@loginSuccess": {
+    "description": "Message shown when login succeeds"
+  },
+  "loginFailed": "Đăng nhập thất bại",
+  "@loginFailed": {
+    "description": "Message shown when login fails"
+  },
+  "registerSuccess": "Đăng ký thành công",
+  "@registerSuccess": {
+    "description": "Message shown when registration succeeds"
+  },
+  "registerFailed": "Đăng ký thất bại",
+  "@registerFailed": {
+    "description": "Message shown when registration fails"
+  },
+  "requiredField": "Trường này là bắt buộc",
+  "@requiredField": {
+    "description": "Validation message for required fields"
+  },
+  "invalidEmail": "Email không hợp lệ",
+  "@invalidEmail": {
+    "description": "Validation message for invalid email format"
+  },
+  "passwordTooShort": "Mật khẩu quá ngắn",
+  "@passwordTooShort": {
+    "description": "Validation message when password is too short"
+  },
+  "cancelText": "Hủy",
+  "@cancelText": {
+    "description": "Cancel"
+  },
+  "confirmText": "Xác nhận",
+  "@confirmText": {
+    "description": "Confirm"
+  },
+  "deleteText": "Xóa",
+  "@deleteText": {
+    "description": "Delete"
+  },
+  "deleteProductTitle": "Xóa sản phẩm",
+  "@deleteProductTitle": {
+    "description": "Title for delete product dialog"
+  },
+  "deleteProductConfirmMessage": "Bạn có chắc chắn muốn xóa sản phẩm này không?",
+  "@deleteProductConfirmMessage": {
+    "description": "Confirmation message before deleting product"
+  },
+  "deletedProductSuccess": "Đã xóa sản phẩm thành công",
+  "@deletedProductSuccess": {
+    "description": "Message shown after product is deleted"
+  },
+  "addProduct": "Thêm sản phẩm",
+  "@addProduct": {
+    "description": "Add product button/text"
+  },
+  "editProduct": "Chỉnh sửa sản phẩm",
+  "@editProduct": {
+    "description": "Edit product button/text"
+  },
+  "productDetail": "Chi tiết sản phẩm",
+  "@productDetail": {
+    "description": "Screen title for product detail"
+  },
+  "confirmAdd": "Xác nhận thêm",
+  "@confirmAdd": {
+    "description": "Confirm add product action"
+  },
+  "confirmUpdate": "Xác nhận cập nhật",
+  "@confirmUpdate": {
+    "description": "Confirm update product action"
+  },
+  "confirmAddProductMessage": "Bạn có chắc muốn thêm sản phẩm này?",
+  "@confirmAddProductMessage": {
+    "description": "Message confirming adding product"
+  },
+  "confirmUpdateProductMessage": "Bạn có chắc muốn cập nhật sản phẩm này?",
+  "@confirmUpdateProductMessage": {
+    "description": "Message confirming updating product"
+  },
+  "add": "Thêm",
+  "@add": {
+    "description": "Add button"
+  },
+  "update": "Cập nhật",
+  "@update": {
+    "description": "Update button"
+  },
+  "name": "Tên",
+  "@name": {
+    "description": "Product name label"
+  },
+  "price": "Giá",
+  "@price": {
+    "description": "Product price label"
+  },
+  "quantity": "Số lượng",
+  "@quantity": {
+    "description": "Product quantity label"
+  },
+  "imageUrl": "Đường dẫn ảnh",
+  "@imageUrl": {
+    "description": "Product image URL field"
+  },
+  "description": "Mô tả",
+  "@description": {
+    "description": "Product description field"
+  },
+  "category": "Thể loại",
+  "@category": {
+    "description": "Product category field"
+  }
+}

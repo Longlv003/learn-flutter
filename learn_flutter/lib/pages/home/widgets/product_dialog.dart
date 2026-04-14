@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learn_flutter/blocs/home/product_cubit.dart';
 import 'package:learn_flutter/blocs/home/product_state.dart';
+import 'package:learn_flutter/cores/l10n/app_localizations.dart';
 import 'package:learn_flutter/pages/home/widgets/confirm_dialog.dart';
 
 class ProductDialog extends StatefulWidget {
@@ -57,16 +58,16 @@ class _ProductDialog extends State<ProductDialog> {
       },
       builder: (context, state) {
         _bindState(state);
-
+        final l10n = AppLocalizations.of(context)!;
         final proCubit = context.read<ProductCubit>();
 
         return AlertDialog(
           title: Text(
             state.mode == ProductDialogMode.add
-                ? "Thêm sản phẩm"
+                ? l10n.addProduct
                 : state.mode == ProductDialogMode.edit
-                ? "Update sản phẩm"
-                : "Xem chi tiết sản phẩm",
+                ? l10n.editProduct
+                : l10n.productDetail,
           ),
           content: SingleChildScrollView(
             child: Column(
@@ -74,34 +75,34 @@ class _ProductDialog extends State<ProductDialog> {
               children: [
                 TextField(
                   controller: _nameController,
-                  decoration: const InputDecoration(labelText: "Name"),
+                  decoration: InputDecoration(labelText: l10n.name),
                   onChanged: proCubit.onNameChanged,
                 ),
                 TextField(
                   controller: _priceController,
-                  decoration: const InputDecoration(labelText: "Price"),
+                  decoration: InputDecoration(labelText: l10n.price),
                   onChanged: (v) => proCubit.onPriceChanged(v),
                 ),
                 TextField(
                   controller: _quantityController,
-                  decoration: const InputDecoration(labelText: "Quantity"),
+                  decoration: InputDecoration(labelText: l10n.quantity),
                   keyboardType: TextInputType.number,
                   onChanged: (v) =>
                       proCubit.onQuantityChanged(int.tryParse(v) ?? 0),
                 ),
                 TextField(
                   controller: _imageController,
-                  decoration: const InputDecoration(labelText: "Image link"),
+                  decoration: InputDecoration(labelText: l10n.imageUrl),
                   onChanged: proCubit.onImageChanged,
                 ),
                 TextField(
                   controller: _descriptionController,
-                  decoration: const InputDecoration(labelText: "Description"),
+                  decoration: InputDecoration(labelText: l10n.description),
                   onChanged: proCubit.onDescriptionChanged,
                 ),
                 TextField(
                   controller: _categoryController,
-                  decoration: const InputDecoration(labelText: "Category"),
+                  decoration: InputDecoration(labelText: l10n.category),
                   onChanged: proCubit.onCategoryChanged,
                 ),
               ],
@@ -110,7 +111,7 @@ class _ProductDialog extends State<ProductDialog> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text("Cancel"),
+              child: Text(l10n.cancelText),
             ),
             ElevatedButton(
               onPressed: state.status == ProductDialogStatus.loading
@@ -119,11 +120,11 @@ class _ProductDialog extends State<ProductDialog> {
                       final confirm = await showConfirmDialog(
                         context: context,
                         title: state.mode == ProductDialogMode.add
-                            ? "Xác nhận thêm"
-                            : "Xác nhận cập nhật",
+                            ? l10n.confirmAdd
+                            : l10n.confirmUpdate,
                         content: state.mode == ProductDialogMode.add
-                            ? "Bạn có chắc muốn thêm sản phẩm này?"
-                            : "Bạn có chắc muốn cập nhật sản phẩm này?",
+                            ? l10n.confirmAddProductMessage
+                            : l10n.confirmUpdateProductMessage,
                       );
 
                       if (confirm) {
@@ -137,7 +138,9 @@ class _ProductDialog extends State<ProductDialog> {
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
                   : Text(
-                      state.mode == ProductDialogMode.add ? "Add" : "Update",
+                      state.mode == ProductDialogMode.add
+                          ? l10n.add
+                          : l10n.update,
                     ),
             ),
           ],

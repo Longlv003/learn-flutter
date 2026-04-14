@@ -1,7 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:learn_flutter/flavors.dart';
 
 class System {
+  static const supportedLocales = [Locale('en', 'US'), Locale('vi', 'VN')];
+
+  static const defaultLocale = Locale('vi', 'VN');
+
   static const int receiveTimeout = 60000;
   static const int connectionTimeout = 60000;
   static Map<String, String> header({String? token}) {
