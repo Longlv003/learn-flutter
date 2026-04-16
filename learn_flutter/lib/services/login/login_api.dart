@@ -1,11 +1,9 @@
+import 'package:learn_flutter/di.dart';
 import 'package:learn_flutter/model/account_model.dart';
 import 'package:learn_flutter/services/api_service.dart';
-import 'package:logger/logger.dart';
-
-var logger = Logger();
 
 class LoginApi {
-  final api = ApiService();
+  final api = getIt<ApiService>();
 
   Future<AccountModel> loginApi(String email, String password) async {
     try {

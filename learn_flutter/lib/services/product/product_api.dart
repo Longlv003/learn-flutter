@@ -1,11 +1,11 @@
+import 'package:learn_flutter/di.dart';
 import 'package:learn_flutter/model/product_model.dart';
 import 'package:learn_flutter/services/api_service.dart';
 import 'package:logger/logger.dart';
 
-var logger = Logger();
-
 class ProductApi {
-  final api = ApiService();
+  final api = getIt<ApiService>();
+  final logger = getIt<Logger>();
 
   Future<List<ProductModel>> getProducts() async {
     try {

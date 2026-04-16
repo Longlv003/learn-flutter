@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:learn_flutter/blocs/login/login_cubit.dart';
 import 'package:learn_flutter/blocs/login/login_state.dart';
 import 'package:learn_flutter/cores/l10n/app_localizations.dart';
+import 'package:learn_flutter/di.dart';
 import 'package:learn_flutter/routes/routes.dart';
 
 class LoginPage extends StatefulWidget {
@@ -29,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => LoginCubit(),
+      create: (_) => getIt<LoginCubit>(),
       child: BlocListener<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {

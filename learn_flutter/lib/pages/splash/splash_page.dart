@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:learn_flutter/blocs/splash/splash_cubit.dart';
 import 'package:learn_flutter/blocs/splash/splash_state.dart';
 import 'package:learn_flutter/cores/l10n/app_localizations.dart';
+import 'package:learn_flutter/di.dart';
 import 'package:learn_flutter/routes/routes.dart';
 
 class SplashPage extends StatelessWidget {
@@ -12,7 +13,7 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => SplashCubit()..initializeApp(),
+      create: (_) => getIt<SplashCubit>()..initializeApp(),
       child: BlocListener<SplashCubit, SplashState>(
         listener: (context, state) {
           if (state is SplashLoaded) {

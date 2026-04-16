@@ -1,15 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learn_flutter/blocs/home/product_state.dart';
+import 'package:learn_flutter/di.dart';
 import 'package:learn_flutter/model/product_model.dart';
 import 'package:learn_flutter/services/product/product_api.dart';
 import 'package:logger/logger.dart';
 
-var logger = Logger();
-
 class ProductCubit extends Cubit<ProductState> {
-  ProductCubit() : super(ProductState());
+  final ProductApi productApi;
 
-  final productApi = ProductApi();
+  ProductCubit(this.productApi) : super(ProductState());
+
+  final logger = getIt<Logger>();
 
   void onNameChanged(String value) => emit(state.copyWith(name: value));
   void onPriceChanged(String value) => emit(state.copyWith(price: value));

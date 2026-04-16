@@ -4,9 +4,9 @@ import 'package:learn_flutter/common/utils/validators/login/login_validator.dart
 import 'package:learn_flutter/services/login/login_api.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit() : super(LoginInitial());
+  final LoginApi loginApi;
 
-  final loginApi = LoginApi();
+  LoginCubit(this.loginApi) : super(LoginInitial());
 
   Future<void> loginHandle(String email, String pass) async {
     try {

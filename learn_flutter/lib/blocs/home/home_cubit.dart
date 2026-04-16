@@ -1,19 +1,19 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learn_flutter/blocs/home/home_state.dart';
+import 'package:learn_flutter/di.dart';
 import 'package:learn_flutter/services/product/product_api.dart';
 import 'package:logger/logger.dart';
 
-var logger = Logger();
-
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(HomeState());
+  final ProductApi productApi;
+  final logger = getIt<Logger>();
+
+  HomeCubit(this.productApi) : super(HomeState());
 
   Future<void> fetchProducts() async {
     try {
       emit(state.copyWith(status: Status.loading));
-      final productAPi = ProductApi();
-      final products = await productAPi.getProducts();
-      await Future.delayed(Duration(seconds: 1));
+      final products = await productApi.getProducts();
       emit(state.copyWith(status: Status.success, products: products));
     } catch (e) {
       logger.e("fetch product failed: $e");
@@ -27,8 +27,6 @@ class HomeCubit extends Cubit<HomeState> {
     emit(state.copyWith(isRefreshing: true, status: Status.loading));
 
     await fetchProducts();
-
-    await Future.delayed(Duration(seconds: 2));
 
     emit(state.copyWith(isRefreshing: false));
   }

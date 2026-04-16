@@ -4,6 +4,7 @@ import 'package:learn_flutter/blocs/home/home_cubit.dart';
 import 'package:learn_flutter/blocs/home/home_state.dart';
 import 'package:learn_flutter/blocs/home/product_cubit.dart';
 import 'package:learn_flutter/cores/l10n/app_localizations.dart';
+import 'package:learn_flutter/di.dart';
 import 'package:learn_flutter/flavors.dart';
 import 'package:learn_flutter/pages/home/widgets/confirm_dialog.dart';
 import 'package:learn_flutter/pages/home/widgets/product_dialog.dart';
@@ -28,7 +29,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => HomeCubit()..refreshAll(),
+      create: (_) => getIt<HomeCubit>()..refreshAll(),
       child: Builder(
         builder: (context) {
           return Scaffold(
@@ -40,7 +41,7 @@ class _HomePageState extends State<HomePage> {
                 final result = await showDialog(
                   context: context,
                   builder: (_) => BlocProvider(
-                    create: (_) => ProductCubit()..openAdd(),
+                    create: (_) => getIt<ProductCubit>()..openAdd(),
                     child: const ProductDialog(),
                   ),
                 );
@@ -81,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                                 context: context,
                                 builder: (_) => BlocProvider(
                                   create: (_) =>
-                                      ProductCubit()..openEdit(product),
+                                      getIt<ProductCubit>()..openEdit(product),
                                   child: const ProductDialog(),
                                 ),
                               );
@@ -101,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                               );
 
                               if (confirm) {
-                                final productCubit = ProductCubit();
+                                final productCubit = getIt<ProductCubit>();
                                 await productCubit.deleteProduct(
                                   product.id ?? "",
                                 );
