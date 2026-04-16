@@ -13,15 +13,50 @@ Widget columnPage() {
       SizedBox(height: 20),
       Text("Welcome"),
       SizedBox(height: 20),
-      TextField(decoration: InputDecoration(labelText: "Email")),
-      SizedBox(height: 10),
-      TextField(decoration: InputDecoration(labelText: "Password")),
+      Form(
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: "Email",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: "Password",
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: Colors.green),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                floatingLabelStyle: TextStyle(color: Colors.green),
+              ),
+            ),
+          ],
+        ),
+      ),
       SizedBox(height: 20),
-      ElevatedButton(
-        onPressed: () {
-          logger.d("Login success");
-        },
-        child: Text("Login"),
+      SizedBox(
+        height: 50,
+        width: double.infinity,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          onPressed: () {
+            logger.d("Login success");
+          },
+          child: Text("Login"),
+        ),
       ),
     ],
   );

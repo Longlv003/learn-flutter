@@ -73,36 +73,77 @@ class _ProductDialog extends State<ProductDialog> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                TextField(
+                TextFormField(
                   controller: _nameController,
-                  decoration: InputDecoration(labelText: l10n.name),
+                  decoration: InputDecoration(
+                    labelText: l10n.name,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                  ),
                   onChanged: proCubit.onNameChanged,
                 ),
-                TextField(
+                SizedBox(height: 10),
+                TextFormField(
                   controller: _priceController,
-                  decoration: InputDecoration(labelText: l10n.price),
+                  decoration: InputDecoration(
+                    labelText: l10n.price,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                  ),
                   onChanged: (v) => proCubit.onPriceChanged(v),
                 ),
-                TextField(
+                SizedBox(height: 10),
+                TextFormField(
                   controller: _quantityController,
-                  decoration: InputDecoration(labelText: l10n.quantity),
+                  decoration: InputDecoration(
+                    labelText: l10n.quantity,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                  ),
                   keyboardType: TextInputType.number,
                   onChanged: (v) =>
                       proCubit.onQuantityChanged(int.tryParse(v) ?? 0),
                 ),
-                TextField(
+                SizedBox(height: 10),
+                TextFormField(
                   controller: _imageController,
-                  decoration: InputDecoration(labelText: l10n.imageUrl),
+                  decoration: InputDecoration(
+                    labelText: l10n.imageUrl,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                  ),
                   onChanged: proCubit.onImageChanged,
                 ),
-                TextField(
+                SizedBox(height: 10),
+                TextFormField(
                   controller: _descriptionController,
-                  decoration: InputDecoration(labelText: l10n.description),
+                  decoration: InputDecoration(
+                    labelText: l10n.description,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                  ),
                   onChanged: proCubit.onDescriptionChanged,
                 ),
-                TextField(
+                SizedBox(height: 10),
+                TextFormField(
                   controller: _categoryController,
-                  decoration: InputDecoration(labelText: l10n.category),
+                  decoration: InputDecoration(
+                    labelText: l10n.category,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                  ),
                   onChanged: proCubit.onCategoryChanged,
                 ),
               ],

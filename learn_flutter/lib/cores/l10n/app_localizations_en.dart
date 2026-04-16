@@ -36,15 +36,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confirmPasswordLabel => 'Confirm password';
 
   @override
-  String get enterEmailHint => 'Enter email';
-
-  @override
-  String get enterPasswordHint => 'Enter password';
-
-  @override
-  String get enterConfirmPasswordHint => 'Re-enter password';
-
-  @override
   String get dontHaveAccount => 'Don\'t have an account?';
 
   @override
@@ -54,22 +45,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loginSuccess => 'Login successful';
 
   @override
-  String get loginFailed => 'Login failed';
+  String get requiredEmail => 'Required email';
+
+  @override
+  String get requiredPass => 'Required password';
+
+  @override
+  String get requiredEmailAndPass => 'Required email and password';
+
+  @override
+  String get loginFailed => 'Incorrect password';
 
   @override
   String get registerSuccess => 'Register successful';
 
   @override
-  String get registerFailed => 'Register failed';
-
-  @override
-  String get requiredField => 'This field is required';
-
-  @override
   String get invalidEmail => 'Invalid email';
-
-  @override
-  String get passwordTooShort => 'Password is too short';
 
   @override
   String get cancelText => 'Cancel';

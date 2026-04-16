@@ -36,15 +36,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get confirmPasswordLabel => 'Xác nhận mật khẩu';
 
   @override
-  String get enterEmailHint => 'Nhập email';
-
-  @override
-  String get enterPasswordHint => 'Nhập mật khẩu';
-
-  @override
-  String get enterConfirmPasswordHint => 'Nhập lại mật khẩu';
-
-  @override
   String get dontHaveAccount => 'Bạn chưa có tài khoản?';
 
   @override
@@ -54,22 +45,22 @@ class AppLocalizationsVi extends AppLocalizations {
   String get loginSuccess => 'Đăng nhập thành công';
 
   @override
-  String get loginFailed => 'Đăng nhập thất bại';
+  String get requiredEmail => 'Email đang để trống';
+
+  @override
+  String get requiredPass => 'Mật khẩu đang để trông';
+
+  @override
+  String get requiredEmailAndPass => 'Email và mật khẩu đag để trống';
+
+  @override
+  String get loginFailed => 'Mật khẩu không hợp lệ';
 
   @override
   String get registerSuccess => 'Đăng ký thành công';
 
   @override
-  String get registerFailed => 'Đăng ký thất bại';
-
-  @override
-  String get requiredField => 'Trường này là bắt buộc';
-
-  @override
   String get invalidEmail => 'Email không hợp lệ';
-
-  @override
-  String get passwordTooShort => 'Mật khẩu quá ngắn';
 
   @override
   String get cancelText => 'Hủy';

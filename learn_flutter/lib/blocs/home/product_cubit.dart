@@ -9,6 +9,8 @@ var logger = Logger();
 class ProductCubit extends Cubit<ProductState> {
   ProductCubit() : super(ProductState());
 
+  final productApi = ProductApi();
+
   void onNameChanged(String value) => emit(state.copyWith(name: value));
   void onPriceChanged(String value) => emit(state.copyWith(price: value));
   void onQuantityChanged(int value) => emit(state.copyWith(quantity: value));
@@ -63,8 +65,6 @@ class ProductCubit extends Cubit<ProductState> {
     try {
       emit(state.copyWith(status: ProductDialogStatus.loading));
 
-      final productApi = ProductApi();
-
       final product = ProductModel(
         id: state.id,
         name: state.name.trim(),
@@ -113,7 +113,6 @@ class ProductCubit extends Cubit<ProductState> {
     try {
       emit(state.copyWith(status: ProductDialogStatus.loading));
 
-      final productApi = ProductApi();
       await productApi.deleteProduct(id);
 
       await Future.delayed(const Duration(seconds: 1));

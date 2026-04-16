@@ -1,4 +1,20 @@
 {
+  "accounts": [
+    {
+      "id": "1",
+      "email": "admin@gmail.com",
+      "password": "123456",
+      "name": "Admin",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "email": "user@gmail.com",
+      "password": "123456",
+      "name": "User",
+      "role": "user"
+    }
+  ],
   "products": [
     {
       "id": "1",

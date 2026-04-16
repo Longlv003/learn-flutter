@@ -36,18 +36,6 @@
   "@confirmPasswordLabel": {
     "description": "Label for confirm password input"
   },
-  "enterEmailHint": "Enter email",
-  "@enterEmailHint": {
-    "description": "Hint text for email input"
-  },
-  "enterPasswordHint": "Enter password",
-  "@enterPasswordHint": {
-    "description": "Hint text for password input"
-  },
-  "enterConfirmPasswordHint": "Re-enter password",
-  "@enterConfirmPasswordHint": {
-    "description": "Hint text for confirm password input"
-  },
   "dontHaveAccount": "Don't have an account?",
   "@dontHaveAccount": {
     "description": "Text prompting user to register"
@@ -60,7 +48,13 @@
   "@loginSuccess": {
     "description": "Message shown when login succeeds"
   },
-  "loginFailed": "Login failed",
+  "requiredEmail": "Required email",
+  "@requiredEmail": {},
+  "requiredPass": "Required password",
+  "@requiredPass": {},
+  "requiredEmailAndPass": "Required email and password",
+  "@requiredEmailAndPass": {},
+  "loginFailed": "Incorrect password",
   "@loginFailed": {
     "description": "Message shown when login fails"
   },
@@ -68,21 +62,9 @@
   "@registerSuccess": {
     "description": "Message shown when registration succeeds"
   },
-  "registerFailed": "Register failed",
-  "@registerFailed": {
-    "description": "Message shown when registration fails"
-  },
-  "requiredField": "This field is required",
-  "@requiredField": {
-    "description": "Validation message for required fields"
-  },
   "invalidEmail": "Invalid email",
   "@invalidEmail": {
     "description": "Validation message for invalid email format"
-  },
-  "passwordTooShort": "Password is too short",
-  "@passwordTooShort": {
-    "description": "Validation message when password is too short"
   },
   "cancelText": "Cancel",
   "@cancelText": {

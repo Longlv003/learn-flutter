@@ -152,24 +152,6 @@ abstract class AppLocalizations {
   /// **'Confirm password'**
   String get confirmPasswordLabel;
 
-  /// Hint text for email input
-  ///
-  /// In en, this message translates to:
-  /// **'Enter email'**
-  String get enterEmailHint;
-
-  /// Hint text for password input
-  ///
-  /// In en, this message translates to:
-  /// **'Enter password'**
-  String get enterPasswordHint;
-
-  /// Hint text for confirm password input
-  ///
-  /// In en, this message translates to:
-  /// **'Re-enter password'**
-  String get enterConfirmPasswordHint;
-
   /// Text prompting user to register
   ///
   /// In en, this message translates to:
@@ -188,10 +170,28 @@ abstract class AppLocalizations {
   /// **'Login successful'**
   String get loginSuccess;
 
+  /// No description provided for @requiredEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Required email'**
+  String get requiredEmail;
+
+  /// No description provided for @requiredPass.
+  ///
+  /// In en, this message translates to:
+  /// **'Required password'**
+  String get requiredPass;
+
+  /// No description provided for @requiredEmailAndPass.
+  ///
+  /// In en, this message translates to:
+  /// **'Required email and password'**
+  String get requiredEmailAndPass;
+
   /// Message shown when login fails
   ///
   /// In en, this message translates to:
-  /// **'Login failed'**
+  /// **'Incorrect password'**
   String get loginFailed;
 
   /// Message shown when registration succeeds
@@ -200,29 +200,11 @@ abstract class AppLocalizations {
   /// **'Register successful'**
   String get registerSuccess;
 
-  /// Message shown when registration fails
-  ///
-  /// In en, this message translates to:
-  /// **'Register failed'**
-  String get registerFailed;
-
-  /// Validation message for required fields
-  ///
-  /// In en, this message translates to:
-  /// **'This field is required'**
-  String get requiredField;
-
   /// Validation message for invalid email format
   ///
   /// In en, this message translates to:
   /// **'Invalid email'**
   String get invalidEmail;
-
-  /// Validation message when password is too short
-  ///
-  /// In en, this message translates to:
-  /// **'Password is too short'**
-  String get passwordTooShort;
 
   /// Cancel
   ///

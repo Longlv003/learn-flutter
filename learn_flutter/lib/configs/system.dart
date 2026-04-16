@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:learn_flutter/flavors.dart';
+import 'package:logger/logger.dart';
 
 class System {
   static const supportedLocales = [Locale('en', 'US'), Locale('vi', 'VN')];
@@ -25,6 +26,7 @@ class URL {
 
   static String _fallback(String? url) {
     if (url == null || url.trim().isEmpty) {
+      Logger().e("Error load url env!");
       return "http://10.0.2.2:3000";
     }
     return url;

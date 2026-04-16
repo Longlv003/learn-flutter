@@ -56,7 +56,15 @@ class _LoginPageState extends State<LoginPage> {
               if (state is LoginFailed) {
                 switch (state.error) {
                   case "REQUIRED":
-                    errorMessage = AppLocalizations.of(context)!.requiredField;
+                    errorMessage = AppLocalizations.of(
+                      context,
+                    )!.requiredEmailAndPass;
+                    break;
+                  case "REQUIRED_EMAIL":
+                    errorMessage = AppLocalizations.of(context)!.requiredEmail;
+                    break;
+                  case "REQUIRED_PASS":
+                    errorMessage = AppLocalizations.of(context)!.requiredPass;
                     break;
                   case "INVALID_EMAIL":
                     errorMessage = AppLocalizations.of(context)!.invalidEmail;

@@ -36,18 +36,6 @@
   "@confirmPasswordLabel": {
     "description": "Label for confirm password input"
   },
-  "enterEmailHint": "Nhập email",
-  "@enterEmailHint": {
-    "description": "Hint text for email input"
-  },
-  "enterPasswordHint": "Nhập mật khẩu",
-  "@enterPasswordHint": {
-    "description": "Hint text for password input"
-  },
-  "enterConfirmPasswordHint": "Nhập lại mật khẩu",
-  "@enterConfirmPasswordHint": {
-    "description": "Hint text for confirm password input"
-  },
   "dontHaveAccount": "Bạn chưa có tài khoản?",
   "@dontHaveAccount": {
     "description": "Text prompting user to register"
@@ -60,7 +48,17 @@
   "@loginSuccess": {
     "description": "Message shown when login succeeds"
   },
-  "loginFailed": "Đăng nhập thất bại",
+  "requiredEmail": "Email đang để trống",
+  "@requiredEmail": {
+    "description": "Không được để trống email"
+  },
+  "requiredPass": "Mật khẩu đang để trông",
+  "@requiredPass": {
+    "description": "Không được để trống mật khẩu"
+  },
+  "requiredEmailAndPass": "Email và mật khẩu đag để trống",
+  "@requiredEmailAndPass": {},
+  "loginFailed": "Mật khẩu không hợp lệ",
   "@loginFailed": {
     "description": "Message shown when login fails"
   },
@@ -68,21 +66,9 @@
   "@registerSuccess": {
     "description": "Message shown when registration succeeds"
   },
-  "registerFailed": "Đăng ký thất bại",
-  "@registerFailed": {
-    "description": "Message shown when registration fails"
-  },
-  "requiredField": "Trường này là bắt buộc",
-  "@requiredField": {
-    "description": "Validation message for required fields"
-  },
   "invalidEmail": "Email không hợp lệ",
   "@invalidEmail": {
     "description": "Validation message for invalid email format"
-  },
-  "passwordTooShort": "Mật khẩu quá ngắn",
-  "@passwordTooShort": {
-    "description": "Validation message when password is too short"
   },
   "cancelText": "Hủy",
   "@cancelText": {
