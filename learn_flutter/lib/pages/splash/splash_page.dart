@@ -17,7 +17,7 @@ class SplashPage extends StatelessWidget {
       child: BlocListener<SplashCubit, SplashState>(
         listener: (context, state) {
           if (state is SplashLoaded) {
-            Get.offAllNamed(Routes.loginPage);
+            Get.offAllNamed(Routes.homePage);
           }
         },
         child: BlocBuilder<SplashCubit, SplashState>(

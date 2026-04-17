@@ -22,7 +22,7 @@ class ProductCubit extends Cubit<ProductState> {
   void onRatingChanged(double value) => emit(state.copyWith(rating: value));
 
   void openAdd() {
-    emit(const ProductState(mode: ProductDialogMode.add));
+    emit(const ProductState(mode: ProductDialogMode.add, isValid: true));
   }
 
   void openEdit(ProductModel product) {
@@ -37,31 +37,27 @@ class ProductCubit extends Cubit<ProductState> {
         description: product.description,
         category: product.category,
         rating: product.rating,
+        isValid: true,
       ),
     );
   }
 
-  bool _isValid() {
-    final double parsedPrice =
-        double.tryParse(state.price.replaceAll(',', '.')) ?? 0;
-    return state.name.trim().isNotEmpty &&
-        parsedPrice > 0 &&
-        state.quantity > 0;
-  }
-
   Future<void> submitProduct() async {
-    if (!_isValid()) {
+    final price = double.tryParse(state.price.replaceAll(',', '.')) ?? 0;
+
+    final isValid =
+        state.name.trim().isNotEmpty && price > 0 && state.quantity > 0;
+
+    if (!isValid) {
       emit(
         state.copyWith(
           status: ProductDialogStatus.error,
           errorMessage: 'Vui lòng điền đầy đủ các trường bắt buộc',
         ),
       );
+      // emit(state.copyWith(status: ProductDialogStatus.initial));
       return;
     }
-
-    final double parsedPrice =
-        double.tryParse(state.price.replaceAll(',', '.')) ?? 0;
 
     try {
       emit(state.copyWith(status: ProductDialogStatus.loading));
@@ -69,7 +65,7 @@ class ProductCubit extends Cubit<ProductState> {
       final product = ProductModel(
         id: state.id,
         name: state.name.trim(),
-        price: parsedPrice,
+        price: price,
         quantity: state.quantity,
         image: state.image,
         description: state.description,
@@ -77,58 +73,50 @@ class ProductCubit extends Cubit<ProductState> {
         rating: state.rating,
       );
 
-      // final res = await productApi.createProduct(product);
-      final res = state.mode == ProductDialogMode.add
-          ? await productApi.createProduct(product)
-          : await productApi.putProduct(product);
-
-      if (res == null) {
-        throw Exception("Create product failed");
+      if (state.mode == ProductDialogMode.add) {
+        await productApi.createProduct(product);
+      } else {
+        await productApi.putProduct(product);
       }
 
-      await Future.delayed(const Duration(seconds: 1));
-
       emit(state.copyWith(status: ProductDialogStatus.success));
     } catch (e) {
-      logger.e('Create product failed: $e');
       emit(
         state.copyWith(
           status: ProductDialogStatus.error,
-          errorMessage: 'Tạo sản phẩm thất bại: $e',
+          errorMessage: e.toString(),
         ),
       );
     }
   }
 
-  Future<void> deleteProduct(String id) async {
-    if (id.isEmpty) {
-      emit(
-        state.copyWith(
-          status: ProductDialogStatus.error,
-          errorMessage: 'Không có sản phẩm để xóa',
-        ),
-      );
-      return;
-    }
+  // Future<void> deleteProduct(String id) async {
+  //   if (id.isEmpty) {
+  //     emit(
+  //       state.copyWith(
+  //         status: ProductDialogStatus.error,
+  //         errorMessage: 'Không có sản phẩm để xóa',
+  //       ),
+  //     );
+  //     return;
+  //   }
 
-    try {
-      emit(state.copyWith(status: ProductDialogStatus.loading));
+  //   try {
+  //     emit(state.copyWith(status: ProductDialogStatus.loading));
 
-      await productApi.deleteProduct(id);
+  //     await productApi.deleteProduct(id);
 
-      await Future.delayed(const Duration(seconds: 1));
-
-      emit(state.copyWith(status: ProductDialogStatus.success));
-    } catch (e) {
-      logger.e('Delete product failed: $e');
-      emit(
-        state.copyWith(
-          status: ProductDialogStatus.error,
-          errorMessage: 'Xóa sản phẩm thất bại: $e',
-        ),
-      );
-    }
-  }
+  //     emit(state.copyWith(status: ProductDialogStatus.success));
+  //   } catch (e) {
+  //     logger.e('Delete product failed: $e');
+  //     emit(
+  //       state.copyWith(
+  //         status: ProductDialogStatus.error,
+  //         errorMessage: 'Xóa sản phẩm thất bại: $e',
+  //       ),
+  //     );
+  //   }
+  // }
 
   void reset() => emit(const ProductState());
 }

@@ -1,151 +1,120 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:learn_flutter/blocs/home/home_cubit.dart';
 import 'package:learn_flutter/blocs/home/product_cubit.dart';
 import 'package:learn_flutter/blocs/home/product_state.dart';
 import 'package:learn_flutter/cores/l10n/app_localizations.dart';
-import 'package:learn_flutter/pages/home/widgets/confirm_dialog.dart';
 
 class ProductDialog extends StatefulWidget {
   const ProductDialog({super.key});
 
   @override
-  State<ProductDialog> createState() => _ProductDialog();
+  State<ProductDialog> createState() => _ProductDialogState();
 }
 
-class _ProductDialog extends State<ProductDialog> {
-  final _nameController = TextEditingController();
-  final _priceController = TextEditingController();
-  final _quantityController = TextEditingController();
-  final _imageController = TextEditingController();
-  final _descriptionController = TextEditingController();
-  final _categoryController = TextEditingController();
+class _ProductDialogState extends State<ProductDialog> {
+  late final TextEditingController _nameCtrl;
+  late final TextEditingController _priceCtrl;
+  late final TextEditingController _quantityCtrl;
+  late final TextEditingController _imageCtrl;
+  late final TextEditingController _descCtrl;
+  late final TextEditingController _categoryCtrl;
+
+  @override
+  void initState() {
+    super.initState();
+    final state = context.read<ProductCubit>().state;
+    _nameCtrl = TextEditingController(text: state.name);
+    _priceCtrl = TextEditingController(text: state.price);
+    _quantityCtrl = TextEditingController(
+      text: state.quantity == 0 ? '' : state.quantity.toString(),
+    );
+    _imageCtrl = TextEditingController(text: state.image);
+    _descCtrl = TextEditingController(text: state.description);
+    _categoryCtrl = TextEditingController(text: state.category);
+  }
 
   @override
   void dispose() {
-    _nameController.dispose();
-    _priceController.dispose();
-    _quantityController.dispose();
-    _imageController.dispose();
-    _descriptionController.dispose();
-    _categoryController.dispose();
+    _nameCtrl.dispose();
+    _priceCtrl.dispose();
+    _quantityCtrl.dispose();
+    _imageCtrl.dispose();
+    _descCtrl.dispose();
+    _categoryCtrl.dispose();
     super.dispose();
-  }
-
-  void _bindState(ProductState state) {
-    _nameController.text = state.name;
-    _priceController.text = state.price;
-    _quantityController.text = state.quantity == 0
-        ? ''
-        : state.quantity.toString();
-    _imageController.text = state.image;
-    _descriptionController.text = state.description;
-    _categoryController.text = state.category;
   }
 
   @override
   Widget build(BuildContext context) {
+    final productCubit = context.read<ProductCubit>();
+    final l10n = AppLocalizations.of(context)!;
+
     return BlocConsumer<ProductCubit, ProductState>(
       listener: (context, state) {
         if (state.status == ProductDialogStatus.success) {
-          Navigator.pop(context, true);
-        }
-
-        if (state.status == ProductDialogStatus.error) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.errorMessage ?? "Error")),
-          );
+          context.read<HomeCubit>().refreshAll();
+          Navigator.pop(context);
         }
       },
       builder: (context, state) {
-        _bindState(state);
-        final l10n = AppLocalizations.of(context)!;
-        final proCubit = context.read<ProductCubit>();
-
         return AlertDialog(
           title: Text(
             state.mode == ProductDialogMode.add
                 ? l10n.addProduct
-                : state.mode == ProductDialogMode.edit
-                ? l10n.editProduct
-                : l10n.productDetail,
+                : l10n.editProduct,
           ),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                TextFormField(
-                  controller: _nameController,
-                  decoration: InputDecoration(
-                    labelText: l10n.name,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                  ),
-                  onChanged: proCubit.onNameChanged,
+                _field(
+                  label: l10n.name,
+                  controller: _nameCtrl,
+                  onChanged: productCubit.onNameChanged,
                 ),
-                SizedBox(height: 10),
-                TextFormField(
-                  controller: _priceController,
-                  decoration: InputDecoration(
-                    labelText: l10n.price,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
+                _field(
+                  label: l10n.price,
+                  controller: _priceCtrl,
+                  onChanged: productCubit.onPriceChanged,
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
                   ),
-                  onChanged: (v) => proCubit.onPriceChanged(v),
                 ),
-                SizedBox(height: 10),
-                TextFormField(
-                  controller: _quantityController,
-                  decoration: InputDecoration(
-                    labelText: l10n.quantity,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                  ),
-                  keyboardType: TextInputType.number,
+                _field(
+                  label: l10n.quantity,
+                  controller: _quantityCtrl,
                   onChanged: (v) =>
-                      proCubit.onQuantityChanged(int.tryParse(v) ?? 0),
+                      productCubit.onQuantityChanged(int.tryParse(v) ?? 0),
+                  keyboardType: TextInputType.number,
                 ),
-                SizedBox(height: 10),
-                TextFormField(
-                  controller: _imageController,
-                  decoration: InputDecoration(
-                    labelText: l10n.imageUrl,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.grey),
+                _field(
+                  label: l10n.imageUrl,
+                  controller: _imageCtrl,
+                  onChanged: productCubit.onImageChanged,
+                ),
+                _field(
+                  label: l10n.description,
+                  controller: _descCtrl,
+                  onChanged: productCubit.onDescriptionChanged,
+                ),
+                _field(
+                  label: l10n.category,
+                  controller: _categoryCtrl,
+                  onChanged: productCubit.onCategoryChanged,
+                ),
+                if (state.status == ProductDialogStatus.error &&
+                    state.errorMessage != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Text(
+                      state.errorMessage!,
+                      style: const TextStyle(color: Colors.red, fontSize: 13),
+                      softWrap: true,
+                      maxLines: null,
+                      overflow: TextOverflow.visible,
                     ),
                   ),
-                  onChanged: proCubit.onImageChanged,
-                ),
-                SizedBox(height: 10),
-                TextFormField(
-                  controller: _descriptionController,
-                  decoration: InputDecoration(
-                    labelText: l10n.description,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                  ),
-                  onChanged: proCubit.onDescriptionChanged,
-                ),
-                SizedBox(height: 10),
-                TextFormField(
-                  controller: _categoryController,
-                  decoration: InputDecoration(
-                    labelText: l10n.category,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                  ),
-                  onChanged: proCubit.onCategoryChanged,
-                ),
               ],
             ),
           ),
@@ -155,27 +124,13 @@ class _ProductDialog extends State<ProductDialog> {
               child: Text(l10n.cancelText),
             ),
             ElevatedButton(
-              onPressed: state.status == ProductDialogStatus.loading
-                  ? null
-                  : () async {
-                      final confirm = await showConfirmDialog(
-                        context: context,
-                        title: state.mode == ProductDialogMode.add
-                            ? l10n.confirmAdd
-                            : l10n.confirmUpdate,
-                        content: state.mode == ProductDialogMode.add
-                            ? l10n.confirmAddProductMessage
-                            : l10n.confirmUpdateProductMessage,
-                      );
-
-                      if (confirm) {
-                        proCubit.submitProduct();
-                      }
-                    },
+              onPressed: state.isValid
+                  ? () => productCubit.submitProduct()
+                  : null,
               child: state.status == ProductDialogStatus.loading
                   ? const SizedBox(
-                      width: 16,
-                      height: 16,
+                      width: 20,
+                      height: 20,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
                   : Text(
@@ -187,6 +142,26 @@ class _ProductDialog extends State<ProductDialog> {
           ],
         );
       },
+    );
+  }
+
+  Widget _field({
+    required String label,
+    required TextEditingController controller,
+    required Function(String) onChanged,
+    TextInputType? keyboardType,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: TextField(
+        controller: controller,
+        onChanged: onChanged,
+        keyboardType: keyboardType,
+        decoration: InputDecoration(
+          labelText: label,
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        ),
+      ),
     );
   }
 }

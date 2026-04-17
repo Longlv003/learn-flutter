@@ -38,4 +38,13 @@ class HomeCubit extends Cubit<HomeState> {
   void resetScroll() {
     emit(state.copyWith(scrollToTop: false));
   }
+
+  Future<void> deleteProduct(String id) async {
+    try {
+      await productApi.deleteProduct(id);
+      await fetchProducts();
+    } catch (e) {
+      logger.e("delete failed: $e");
+    }
+  }
 }

@@ -36,19 +36,19 @@ class _HomePageState extends State<HomePage> {
             // appBar: AppBar(title: const Text("Products")),
             appBar: AppBar(title: Text("App ${F.title}")),
             floatingActionButton: FloatingActionButton(
-              onPressed: () async {
-                final homeCubit = context.read<HomeCubit>();
-                final result = await showDialog(
+              onPressed: () {
+                showDialog(
                   context: context,
-                  builder: (_) => BlocProvider(
-                    create: (_) => getIt<ProductCubit>()..openAdd(),
+                  builder: (_) => MultiBlocProvider(
+                    providers: [
+                      BlocProvider.value(value: context.read<HomeCubit>()),
+                      BlocProvider(
+                        create: (_) => getIt<ProductCubit>()..openAdd(),
+                      ),
+                    ],
                     child: const ProductDialog(),
                   ),
                 );
-
-                if (result == true && context.mounted) {
-                  homeCubit.refreshAll();
-                }
               },
               child: const Icon(Icons.add),
             ),
@@ -77,46 +77,36 @@ class _HomePageState extends State<HomePage> {
 
                           return ProductItem(
                             product: product,
-                            onTap: () async {
-                              final result = await showDialog(
+                            onTap: () {
+                              showDialog(
                                 context: context,
-                                builder: (_) => BlocProvider(
-                                  create: (_) =>
-                                      getIt<ProductCubit>()..openEdit(product),
+                                builder: (_) => MultiBlocProvider(
+                                  providers: [
+                                    BlocProvider.value(
+                                      value: context.read<HomeCubit>(),
+                                    ),
+                                    BlocProvider(
+                                      create: (_) =>
+                                          getIt<ProductCubit>()
+                                            ..openEdit(product),
+                                    ),
+                                  ],
                                   child: const ProductDialog(),
                                 ),
                               );
-
-                              if (result == true) {
-                                homeCubit.refreshAll();
-                              }
                             },
-                            onTapDelete: () async {
-                              final confirm = await showConfirmDialog(
+                            onTapDelete: () {
+                              showConfirmDialog(
                                 context: context,
-                                title: "Xóa sản phẩm",
-                                content:
-                                    "Bạn có chắc chắn muốn xóa sản phẩm này không?",
-                                confirmText: l10n.deleteText,
-                                cancelText: l10n.cancelText,
+                                title: l10n.deleteProductTitle,
+                                content: l10n.deleteProductConfirmMessage,
+                                onConfirm: () {
+                                  final id = product.id;
+                                  if (id == null) return;
+
+                                  context.read<HomeCubit>().deleteProduct(id);
+                                },
                               );
-
-                              if (confirm) {
-                                final productCubit = getIt<ProductCubit>();
-                                await productCubit.deleteProduct(
-                                  product.id ?? "",
-                                );
-                                homeCubit.refreshAll();
-
-                                if (!context.mounted) {
-                                  return;
-                                }
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text("Đã xóa sản phẩm"),
-                                  ),
-                                );
-                              }
                             },
                           );
                         },

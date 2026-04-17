@@ -17,8 +17,10 @@ class ProductState {
 
   final ProductDialogMode mode;
 
+  final bool isValid;
+
   const ProductState({
-    this.id = '',
+    this.id,
     this.name = '',
     this.price = '',
     this.quantity = 0,
@@ -29,6 +31,7 @@ class ProductState {
     this.status = ProductDialogStatus.initial,
     this.mode = ProductDialogMode.add,
     this.errorMessage,
+    this.isValid = false,
   });
 
   ProductState copyWith({
@@ -43,6 +46,7 @@ class ProductState {
     ProductDialogStatus? status,
     ProductDialogMode? mode,
     String? errorMessage,
+    bool? isValid,
   }) {
     return ProductState(
       id: id ?? this.id,
@@ -56,6 +60,7 @@ class ProductState {
       status: status ?? this.status,
       mode: mode ?? this.mode,
       errorMessage: errorMessage,
+      isValid: isValid ?? this.isValid,
     );
   }
 }

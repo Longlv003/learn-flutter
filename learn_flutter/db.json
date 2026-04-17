@@ -17,26 +17,6 @@
   ],
   "products": [
     {
-      "id": "1",
-      "name": "iPhone 15 Pro Max",
-      "price": 32990000,
-      "quantity": 15,
-      "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf",
-      "description": "Flagship cao cấp của Apple với chip A17 Pro",
-      "category": "phone",
-      "rating": 4.8
-    },
-    {
-      "id": "2",
-      "name": "Samsung Galaxy S24 Ultra",
-      "price": 30990000,
-      "quantity": 15,
-      "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf",
-      "description": "Điện thoại Android mạnh mẽ với bút S-Pen",
-      "category": "phone",
-      "rating": 4.7
-    },
-    {
       "id": "3",
       "name": "MacBook Pro M3",
       "price": 45990000,
@@ -97,13 +77,13 @@
       "rating": 4.5
     },
     {
-      "id": "tEiTm77uhQA",
-      "name": "ad",
-      "price": 123,
+      "id": "Z3SskOroYN4",
+      "name": "1234",
+      "price": 321,
       "quantity": 123,
-      "image": "123",
-      "description": "123",
-      "category": "123",
+      "image": "4352",
+      "description": "45235",
+      "category": "235235",
       "rating": 0
     }
   ],
