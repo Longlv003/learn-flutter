@@ -1,11 +1,14 @@
 import 'package:get_it/get_it.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:learn_flutter/blocs/home/home_cubit.dart';
 import 'package:learn_flutter/blocs/home/product_cubit.dart';
 import 'package:learn_flutter/blocs/login/login_cubit.dart';
 import 'package:learn_flutter/blocs/splash/splash_cubit.dart';
+import 'package:learn_flutter/model/product_model.dart';
 import 'package:learn_flutter/services/api_service.dart';
 import 'package:learn_flutter/services/login/login_api.dart';
 import 'package:learn_flutter/services/product/product_api.dart';
+import 'package:learn_flutter/services/product/product_repository.dart';
 import 'package:logger/logger.dart';
 
 final getIt = GetIt.instance;
@@ -23,4 +26,11 @@ Future<void> init() async {
     ..registerFactory<LoginCubit>(() => LoginCubit(getIt()))
     ..registerFactory<HomeCubit>(() => HomeCubit(getIt()))
     ..registerFactory<ProductCubit>(() => ProductCubit(getIt()));
+
+  await Hive.initFlutter();
+
+  Hive.registerAdapter(ProductModelAdapter());
+
+  final box = await Hive.openBox<ProductModel>('products');
+  getIt.registerLazySingleton(() => ProductRepository(ProductApi(), box));
 }

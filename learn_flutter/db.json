@@ -77,14 +77,24 @@
       "rating": 4.5
     },
     {
-      "id": "Z3SskOroYN4",
-      "name": "1234",
-      "price": 321,
-      "quantity": 123,
-      "image": "4352",
-      "description": "45235",
-      "category": "235235",
+      "id": "PJIPqK4c2dc",
+      "name": "3123",
+      "price": 654,
+      "quantity": 654,
+      "image": "765",
+      "description": "q654",
+      "category": "765",
       "rating": 0
+    },
+    {
+      "name": "765",
+      "price": 987,
+      "quantity": 987,
+      "image": "98",
+      "description": "987",
+      "category": "987",
+      "rating": 0,
+      "id": "gePxYsH3HW0"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

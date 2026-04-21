@@ -1,20 +1,35 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learn_flutter/blocs/home/home_state.dart';
 import 'package:learn_flutter/di.dart';
-import 'package:learn_flutter/services/product/product_api.dart';
+import 'package:learn_flutter/services/product/product_repository.dart';
 import 'package:logger/logger.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  final ProductApi productApi;
   final logger = getIt<Logger>();
 
-  HomeCubit(this.productApi) : super(HomeState());
+  final ProductRepository repo;
+
+  HomeCubit(this.repo) : super(HomeState());
 
   Future<void> fetchProducts() async {
     try {
       emit(state.copyWith(status: Status.loading));
-      final products = await productApi.getProducts();
-      emit(state.copyWith(status: Status.success, products: products));
+
+      final cached = repo.getCachedProducts();
+      if (cached.isNotEmpty) {
+        logger.d("cached: ${cached.length}");
+        emit(state.copyWith(status: Status.initial, products: cached));
+      }
+
+      final products = await repo.getProducts();
+
+      if (products.isEmpty) {
+        emit(state.copyWith(status: Status.success));
+      } else {
+        emit(state.copyWith(status: Status.success, products: products));
+      }
+
+      // emit(state.copyWith(status: Status.success, products: products));
     } catch (e) {
       logger.e("fetch product failed: $e");
       emit(state.copyWith(status: Status.error));
@@ -24,7 +39,7 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> refreshAll() async {
     if (state.isRefreshing) return;
 
-    emit(state.copyWith(isRefreshing: true, status: Status.loading));
+    emit(state.copyWith(isRefreshing: true));
 
     await fetchProducts();
 
@@ -41,10 +56,14 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> deleteProduct(String id) async {
     try {
-      await productApi.deleteProduct(id);
-      await fetchProducts();
+      final updatedList = state.products.where((p) => p.id != id).toList();
+
+      emit(state.copyWith(products: updatedList));
+
+      await repo.deleteProduct(id);
     } catch (e) {
       logger.e("delete failed: $e");
+      await fetchProducts();
     }
   }
 }

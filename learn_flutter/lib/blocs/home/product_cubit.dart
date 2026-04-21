@@ -2,13 +2,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learn_flutter/blocs/home/product_state.dart';
 import 'package:learn_flutter/di.dart';
 import 'package:learn_flutter/model/product_model.dart';
-import 'package:learn_flutter/services/product/product_api.dart';
+import 'package:learn_flutter/services/product/product_repository.dart';
 import 'package:logger/logger.dart';
 
 class ProductCubit extends Cubit<ProductState> {
-  final ProductApi productApi;
+  final ProductRepository repo;
 
-  ProductCubit(this.productApi) : super(ProductState());
+  ProductCubit(this.repo) : super(ProductState());
 
   final logger = getIt<Logger>();
 
@@ -74,9 +74,9 @@ class ProductCubit extends Cubit<ProductState> {
       );
 
       if (state.mode == ProductDialogMode.add) {
-        await productApi.createProduct(product);
+        await repo.createProduct(product);
       } else {
-        await productApi.putProduct(product);
+        await repo.putProduct(product);
       }
 
       emit(state.copyWith(status: ProductDialogStatus.success));
